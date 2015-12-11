@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище SiteDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ServiceCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="Descriprion" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SPService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="RawShort" Type="nvarchar(max)" />
+          <Property Name="RawData" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_SPService_ToTable">
+          <End Role="ServiceCategories" Type="Self.ServiceCategories" Multiplicity="1" />
+          <End Role="SPService" Type="Self.SPService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SPService">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SiteDBModelContainer">
+          <EntitySet Name="ServiceCategories" EntityType="Self.ServiceCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SPService" EntityType="Self.SPService" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SPService_ToTable" Association="Self.FK_SPService_ToTable">
+            <End Role="ServiceCategories" EntitySet="ServiceCategories" />
+            <End Role="SPService" EntitySet="SPService" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SiteDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ServiceCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="Descriprion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SPServices" Relationship="Self.FK_SPService_ToTable" FromRole="ServiceCategories" ToRole="SPService" />
+        </EntityType>
+        <EntityType Name="SPService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="RawShort" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RawData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ServiceCategory" Relationship="Self.FK_SPService_ToTable" FromRole="SPService" ToRole="ServiceCategories" />
+        </EntityType>
+        <Association Name="FK_SPService_ToTable">
+          <End Role="ServiceCategories" Type="Self.ServiceCategory" Multiplicity="1" />
+          <End Role="SPService" Type="Self.SPService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SPService">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SiteDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ServiceCategories" EntityType="Self.ServiceCategory" />
+          <EntitySet Name="SPServices" EntityType="Self.SPService" />
+          <AssociationSet Name="FK_SPService_ToTable" Association="Self.FK_SPService_ToTable">
+            <End Role="ServiceCategories" EntitySet="ServiceCategories" />
+            <End Role="SPService" EntitySet="SPServices" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SiteDBModelContainer" CdmEntityContainer="SiteDBEntities">
+          <EntitySetMapping Name="ServiceCategories">
+            <EntityTypeMapping TypeName="SiteDBModel.ServiceCategory">
+              <MappingFragment StoreEntitySet="ServiceCategories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Descriprion" ColumnName="Descriprion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SPServices">
+            <EntityTypeMapping TypeName="SiteDBModel.SPService">
+              <MappingFragment StoreEntitySet="SPService">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="RawShort" ColumnName="RawShort" />
+                <ScalarProperty Name="RawData" ColumnName="RawData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

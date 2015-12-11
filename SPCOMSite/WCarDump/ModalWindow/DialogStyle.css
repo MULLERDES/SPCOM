@@ -1,0 +1,108 @@
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+.modal_close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: block;
+    width: 14px;
+    height: 14px;
+    background: url(modal_close.png);
+    z-index: 2;
+}
+
+.modals{
+    display: none;
+    position: fixed;
+    opacity: 1;
+    z-index: 11000;
+    left: 50%;
+    margin-left: -330px;
+    top: 150px;
+    width: 404px;
+    /*font-family: "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", sans-serif;*/
+}
+.divDialogMain{
+    width: 100%;
+    border-radius: 6px;
+    background-color: white;
+    border: 1px solid #000;
+}
+.divDialogMain .dlgHeader{
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: 1px solid #EEE;
+    background: url("hd-bg.png");
+    color: #444;
+    padding: 14px;
+
+}
+.dlgHeader h2{
+    margin: 0px;
+    font-size: 1.3em;
+}
+.dlgHeader p{
+    margin: 0px;
+    font-size: 0.9em;
+}
+.divDlgForm{
+    background-color: #F7F7F7;
+
+}
+
+.divBtnField{
+    text-align: right;
+    overflow: hidden;
+    padding: 12px 20px 12px 130px;
+    margin: 0px;
+    background: #F7F7F7;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.divTextField{
+    background-color: white;
+    padding: 10px 20px;
+    width: 364px;
+    border-bottom: 1px solid #EEE;
+
+}
+.divBtnField input{
+    background: #3F9D4A;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 10px;
+    color: #FFF;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    width:110px;
+}
+.divTextField label{
+    display: block;
+    float: left;
+    width: 130px;
+    padding-top: 8px;
+    color: #222;
+    font-size: 0.9em;
+    text-align: left;
+}
+.divTextField input{
+    border-radius: 4px;
+    background: #F7F7F7;
+    width: 200px;
+    padding: 8px;
+    font-size: 1.2em;
+    font-family: "Helvetica Neue";
+    outline:  none;
+    border-top: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #E7E6E6;
+    border-bottom: 1px solid #E7E6E6;
+    margin-left:10px;
+  
+}

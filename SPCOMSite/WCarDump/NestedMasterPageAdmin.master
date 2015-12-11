@@ -1,0 +1,70 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NestedMasterPageAdmin.master.cs" Inherits="WCarDump.NestedMasterPageAdmin" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderForNestedMasterPage" runat="server">
+     <link href="css/styleShop.css" rel="stylesheet" />
+    <link href="css/sideMenuMulti.css" rel="stylesheet" />
+    <style>
+        .divContainer{
+            margin:10px;
+
+        }
+        .divHeader{
+            position:relative;
+        }
+        
+        .divContent{
+            float:left;
+            width:80%;
+        }
+        .divFooter{
+            clear:left;
+            width:100%;
+            background: #333;
+            color: #FFF;
+        }
+    </style>
+<div class="divContainer">
+    
+    <div>
+        <ul id="SideMenu">
+            <li>
+                <a href="AdminAllUsers.aspx?type=all">Пользователи </a>
+                <ul>
+                    <li><a href="AdminAllUsers.aspx?type=admin">Только адинистраторы</a></li>
+                    <li><a href="AdminAllUsers.aspx?type=users">Только пользователи</a></li>
+                </ul>
+            </li>
+            <li>
+                 <a href="AdminServiseList.aspx">Услуги </a>
+                  <ul>
+                    <li><a href="AdminServiseList.aspx">Список услуг</a></li>
+                    <li><a href="AdminServicesCategoriesList.aspx">Только категории</a></li>
+                </ul>
+            </li>
+            <li>
+                 <a href="AdminProductsList.aspx">Товары </a>
+                  <ul>
+                    <li><a href="AdminProductsList.aspx">Список товаров</a></li>
+                    <li><a href="AdminProductsCategoriesList.aspx">Только категории</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Иcтория посещений сайта</a>
+                
+            </li>
+            
+        </ul>
+
+    </div>
+    <div class="divContent">
+         <asp:ContentPlaceHolder runat="server" ID="cphAdminContent">
+     </asp:ContentPlaceHolder>
+    </div>
+   
+    <div class="divFooter">
+       ffff
+    </div>
+</div>
+
+</asp:Content>

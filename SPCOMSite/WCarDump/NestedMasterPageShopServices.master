@@ -1,0 +1,49 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/NestedMAsterPageSlider.Master" AutoEventWireup="true" CodeBehind="NestedMasterPageShopServices.master.cs" Inherits="WCarDump.NestedMasterPageShopServices" %>
+
+<asp:Content runat="server" ContentPlaceHolderID="nmpHead">
+   
+
+       <asp:ContentPlaceHolder ID="servicesCPHHead" runat="server">
+    </asp:ContentPlaceHolder>
+    <title>Все услуги СПКОМ | Как смотать пробег? Сколько стоит диагностика автомобиля?  </title>
+     <meta name="keywords" 
+ content="коррекция пробега, смотать пробег Киев, автодиагностика, диагностика автомобиля, ремонт блоков SRS Airbag, ремонт битых пикселей, ремонт автомобильной электроники, раскодировка магнитол, чип-тюнинг, чип-ключи, ошибки Start Error"/>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphHolder" runat="server">
+    <link href="css/styleShop.css" rel="stylesheet" />
+    <link href="css/sideMenuMulti.css" rel="stylesheet" />
+
+    <div class="ShopNavigationLeft">
+        <ul id="SideMenu">
+            <li>
+                <a href="ShopServicesMainList.aspx">Все</a>
+            </li>
+            <asp:Repeater runat="server"  ID="RepMenu">
+                <ItemTemplate>
+                    <li> 
+                        <asp:PlaceHolder ID="ph1" runat="server">
+
+                        </asp:PlaceHolder>
+                    </li>
+                </ItemTemplate>
+            </asp:Repeater>
+        </ul>
+        <div style="clear:both;"></div>
+            <div style="padding:10px; padding-left:12px;">
+                <!-- Minfin.com.ua currency informer 161x120 grey-->
+                    <div id="minfin-informer-m1Fn-currency">Загружаем <a href="http://minfin.com.ua/currency/" target="_blank">курсы валют</a> от minfin.com.ua</a></div><script type="text/javascript">var iframe = '<ifra'+'me width="161" height="120" fram'+'eborder="0" src="http://informer.minfin.com.ua/gen/course/?color=grey" vspace="0" scrolling="no" hspace="0" allowtransparency="true"style="width:161px;height:120px;ove'+'rflow:hidden;"></iframe>';var cl = 'minfin-informer-m1Fn-currency';document.getElementById(cl).innerHTML = iframe; </script><noscript><img src="http://informer.minfin.com.ua/gen/img.png" width="1" height="1" alt="minfin.com.ua: курсы валют" title="Курс валют" border="0" /></noscript>
+                <!-- Minfin.com.ua currency informer 161x120 grey-->
+            </div>
+    </div>
+     
+    <div class="ShopContent">
+                <asp:ContentPlaceHolder ID="cphServices" runat="server">     
+                    </asp:ContentPlaceHolder>
+
+    </div>
+  
+    <div class="ShopFooter">
+
+    </div>
+
+</asp:Content>

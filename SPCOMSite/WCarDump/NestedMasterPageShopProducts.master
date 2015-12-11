@@ -1,0 +1,55 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/NestedMasterPageSlider.master" AutoEventWireup="true" CodeBehind="NestedMasterPageShopProducts.master.cs" Inherits="WCarDump.NestedMasterPageShopProducts" %>
+<asp:Content runat="server"  ContentPlaceHolderID="nmpHead">
+    
+       <asp:ContentPlaceHolder ID="productCPHHead" runat="server">
+    </asp:ContentPlaceHolder>
+     <meta name="keywords" 
+ content="Намотка CAN Киев купить, моталка пробега Киев, автоключи Киев, автомобильные ключи купить Киев, hitag 3 Киев, хитаг 3, MMC Flasher, Сканер Адаптер ELM 327, ключ BMW, ключ Audi, ключи бмв, ключи ауди  "/>
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="cphHolder" runat="server">
+    <link href="css/sideMenuMulti.css" rel="stylesheet" />
+    <link href="css/styleShop.css" rel="stylesheet" />
+   
+    <div class="ShopContainer">
+        
+        <div class="ShopNavigationLeft">
+            <div>
+                    <div style="font-size:16px;">
+                        Каталог товаров:
+                    </div>
+                  <ul id="SideMenu">
+                        <li>
+                            <a href="ShopProductsMainList.aspx">Все товары</a>
+                        </li>
+                        <asp:Repeater runat="server"  ID="RepMenu">
+                            <ItemTemplate>
+                                <li> 
+                                    <asp:PlaceHolder ID="ph1" runat="server">
+
+                                    </asp:PlaceHolder>
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ul>
+
+            </div>
+            <div style="clear:both;"></div>
+            <div style="padding:10px; padding-left:12px;">
+                <!-- Minfin.com.ua currency informer 161x120 grey-->
+                    <div id="minfin-informer-m1Fn-currency">Загружаем <a href="http://minfin.com.ua/currency/" target="_blank">курсы валют</a> от minfin.com.ua</a></div><script type="text/javascript">var iframe = '<ifra'+'me width="161" height="120" fram'+'eborder="0" src="http://informer.minfin.com.ua/gen/course/?color=grey" vspace="0" scrolling="no" hspace="0" allowtransparency="true"style="width:161px;height:120px;ove'+'rflow:hidden;"></iframe>';var cl = 'minfin-informer-m1Fn-currency';document.getElementById(cl).innerHTML = iframe; </script><noscript><img src="http://informer.minfin.com.ua/gen/img.png" width="1" height="1" alt="minfin.com.ua: курсы валют" title="Курс валют" border="0" /></noscript>
+                <!-- Minfin.com.ua currency informer 161x120 grey-->
+            </div>
+            <div class="ShopRangePrice" style="display:none;">
+                <span> Диапазон цен:</span>
+                <p>то <input type="number" value="0" /> до <input type="number" value="99999" /></p>
+            </div>
+        </div>
+        <div class="ShopContent">
+                   <asp:ContentPlaceHolder ID="cphProducts" runat="server">     
+                    </asp:ContentPlaceHolder>
+        </div>
+       
+         <div class="ShopFooter" ></div>
+    </div>
+
+</asp:Content>

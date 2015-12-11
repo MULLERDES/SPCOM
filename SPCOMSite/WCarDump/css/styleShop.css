@@ -1,0 +1,131 @@
+﻿
+.ShopContainer{
+  
+}
+
+.ShopContainer .ShopRangePrice p{
+    text-align:center;
+}
+.ShopContainer .ShopRangePrice input{
+    width:60px;
+}
+.ShopContainer .ShopRangePrice span{
+    margin-left:20px;
+}
+
+.ShopNavigationLeft{
+    float:left;
+    width:19%;
+    padding:10px;
+    z-index:9999;
+   
+}
+
+
+
+
+
+
+
+.ShopContent{
+    float:left;
+    width:77%;
+
+}
+.ShopFooter{
+    clear:both;
+}
+
+
+
+
+.ShopServiceHorizontal{
+    padding:10px;
+    height:150px;
+    background-color:white;
+    margin:10px;
+    border-radius: 4px;
+    border: solid 1px rgba(43, 43, 43, 0.50);
+    background-color:rgba(255, 255, 255, 0.62);
+}
+.ShopServiceHorizontal:hover{
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+}
+.ShopServiceHorizontal .Kartinka{
+    float:left;
+    width:150px;
+    height:150px;
+    background-color:aquamarine;
+    
+}
+
+.ShopServiceHorizontal .ZagolovokIOpisanie{
+    float:left;
+    width:74%;
+    height:120px;
+    text-align: initial;
+    text-overflow: clip;
+    overflow: hidden;
+    padding-left:20px
+}
+.ShopServiceHorizontal .ZagolovokIOpisanie h4{
+    margin:0;
+    font-size:22px;
+    color:rgba(0, 60, 134, 1.00)
+}
+.ShopServiceHorizontal .ZagolovokIOpisanie p{
+    margin:0;
+    padding:10px;
+}
+
+.ShopServiceHorizontal .DetailsDiv{
+    text-align:right;
+    padding-right:20px;
+}
+
+.DetailsDiv a{
+    text-decoration:none;
+    color:rgba(0, 60, 134, 0.89);
+    font-weight:600;
+}
+
+
+/* Кнопки купить и все такое*/
+
+
+
+.rectangle{
+                height: 42px;
+                border: none;
+                border-radius: 3px; 
+                min-width:100px;
+}
+
+.blue{
+            background-color: #168eca;
+}
+
+.btn{
+    color:white;
+    font-size:20px;
+    color:white;
+    font-weight:bolder;
+    font-family: "Arial", Helvetica, sans-serif;
+}
+.price{
+    border:solid 1px #808080;
+    margin: 0px;
+    color: #323232;
+    text-align:center;
+    font-weight: bolder;
+    font-family: "Arial", Helvetica, sans-serif;
+    font-size: 20px;
+    padding-top:8px;
+    min-width:130px;
+    max-width:160px;
+    height:30px;
+}
+
+.white{
+    background-color: #f7f6f6;
+}

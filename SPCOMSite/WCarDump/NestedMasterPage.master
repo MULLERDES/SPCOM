@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NestedMasterPage.master.cs" Inherits="WCarDump.NestedMasterPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+<script type="text/javascript" charset="utf-8" src="http://animate.adobe.com/runtime/6.0.0/edge.6.0.0.min.js"></script>
+
+
+    <asp:ContentPlaceHolder runat="server" ID="nmpHEAD">
+
+    </asp:ContentPlaceHolder>
+  
+    <meta name="keywords" 
+ content="СТО Киев, смотать пробег Киев, Киев Дарница, Ремонт электроники, Автосервис Киев, Автомобильная электроника, Киев купить, моталка пробега Киев, автоключи Киев, hitag 3 Киев, MMC Flasher, Сканер Адаптер ELM 327, ключи бмв, ключи ауди  "/>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderForNestedMasterPage" runat="server">
+    
+   
+ 
+    <div class="slider" style="display:none;">
+        <%-- <div id="Stage1" class="EDGE-702172804">
+	    </div>--%>
+     <%--     <div id="Stage2" class="EDGE-99826309">
+	</div>--%>
+        </div>
+        <div id="main">
+          <div id="content" class="left">
+          <div>
+                <asp:ContentPlaceHolder ID="ContentMainPageHolder" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+           
+          </div>
+
+     
+          <div class="cl">&nbsp;</div>
+        </div>
+
+  
+</asp:Content>
