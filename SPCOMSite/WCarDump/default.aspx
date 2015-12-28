@@ -527,6 +527,41 @@
             </div>
 
         </div>
+
+        <div class="ContainerPage" id="PImmooff">
+            <div style="width: 100%; background: url(test/phonImmobilayzer423.png) no-repeat; height: 400px; border: solid 1px;">
+               <div class="Bloktext">
+                    <div>
+                        <div class="Paragrah">
+                          ОТКЛЮЧЕНИЕ ИММОБИЛАЙЗЕРА
+                        </div>
+                        <ul>
+                            <li class="List1">
+                                <label class="Num1">1</label>
+                                Иммобилайзер предназначен для предотвращения несанкционированного запуска двигателя
+                                  
+                            </li>
+                            <li class="List1">
+                                <label class="Num1">2</label>
+                               Причины для отключения:
+                                  <ul class="List2">
+                                      <li>- выход из строя ЭБУ </li>
+                                      <li>- потеря ключа</li>
+                                      <li>- желание установить дистанционный автозапуск</li>
+                                      <li>- для защиты от угона</li>
+                                  </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <a href="ShopServicesDetails.aspx?id=31">
+                            <label class="btn1">Детальная информация</label>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
  <div class="super-spcom">
             SPCOM - автосервис на Дарнице, предлагает комплексные услуги по ремонту автомобильной электроники в Киеве. 
 Наша сфера: компьютерная диагностика авто, ремонт спидометров, перепрошивка систем SRS,программирование ЧИП-Ключей,

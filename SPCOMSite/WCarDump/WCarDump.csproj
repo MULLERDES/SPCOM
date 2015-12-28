@@ -291,6 +291,7 @@
     <Content Include="test\phonCorrect.png" />
     <Content Include="test\phonDiagnos.png" />
     <Content Include="test\phonElectronika.png" />
+    <Content Include="test\phonImmobilayzer423.png" />
     <Content Include="test\phonKrimistop.png" />
     <Content Include="test\phonMagnitoli.png" />
     <Content Include="test\phonNamotki.png" />

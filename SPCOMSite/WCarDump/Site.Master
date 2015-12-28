@@ -479,6 +479,7 @@
                                 <li><a href="ShopServicesDetails.aspx?id=11" for_page="PProgram">Чип-тюнинг</a></li>
                                 <li><a href="ShopServicesDetails.aspx?id=18" for_page="PMagnitoli">Раскодировка магнитол</a></li>
                                 <li><a href="ShopServicesDetails.aspx?id=21" for_page="PNamotki">Изготовление намоток пробега</a></li>
+                                <li><a href="ShopServicesDetails.aspx?id=31" for_page="PImmooff">Отключение иммобилайзера</a></li>
 
                             </ul>
                         </li>

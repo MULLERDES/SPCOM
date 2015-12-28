@@ -11,7 +11,7 @@ CKEDITOR.replace('<%=CKHEAD.ClientID %>', { filebrowserImageUploadUrl: '/Supplem
 });
 </script>
 
-     <script language="C#" runat="server"> 
+     <script language="C#"  runat="server"> 
 
         void Upload_Click(Object sender, EventArgs e) {
 
@@ -126,7 +126,7 @@ CKEDITOR.replace('<%=CKHEAD.ClientID %>', { filebrowserImageUploadUrl: '/Supplem
                 </td>
                 <td> 
                      <input id="fileInp" type="file" runat="server">
-                     <asp:Button Text="Загрузить на сервер"  runat="Server" UseSubmitBehavior="false" ID="bLoadPic"  OnClick="Upload_Click" />
+                     <asp:Button Text="Загрузить на сервер"  runat="Server" UseSubmitBehavior="false" ID="bLoadPic"  OnClick="Upload_Click();" />
                 </td>
             </tr>
         <tr>
