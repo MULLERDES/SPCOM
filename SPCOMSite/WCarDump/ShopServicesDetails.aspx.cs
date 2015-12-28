@@ -29,6 +29,10 @@ namespace WCarDump
         {
             if (_service != null)
             {
+                var price = _service.Price;
+                if(price == 0)
+                    return "договорная";
+
                 return "oт "+Converter.ToPrice( _service.Price.ToString());
             }
             return "Уточняйте->";

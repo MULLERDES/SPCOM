@@ -122,6 +122,9 @@
     <Content Include="AdminServiseEditor.aspx" />
     <Content Include="AdminServiseList.aspx" />
     <Content Include="AdminAllUsers.aspx" />
+    <Content Include="App_Data\SiteDB_log.ldf">
+      <DependentUpon>SiteDB.mdf</DependentUpon>
+    </Content>
     <Content Include="BlogMainList.aspx" />
     <Content Include="css\images\404.jpg" />
     <Content Include="css\images\baner.jpg" />
@@ -313,9 +316,6 @@
     <Content Include="css\images\buttonBuyGreen.png" />
     <Content Include="css\images\diag.png" />
     <Content Include="App_Data\SiteDB.mdf" />
-    <Content Include="App_Data\SiteDB_log.ldf">
-      <DependentUpon>SiteDB.mdf</DependentUpon>
-    </Content>
     <Content Include="bg_blue_01.jpg" />
     <Content Include="catalogue-main.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
