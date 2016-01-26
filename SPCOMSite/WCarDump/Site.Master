@@ -110,7 +110,7 @@
 
         <div class="shell">
             <div class="border">
-                <div id="header" style="background: url(css/images/HeaderLogo9.png) no-repeat;">
+                <div id="header" style="background: url(css/images/HeaderLogo.png) no-repeat;">
                     <style>
                         #canvas {
                             border: 1px solid black;
